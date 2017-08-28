@@ -71,7 +71,7 @@ _gensource = rule(
 
 def java_grpc_library(name, srcs, deps, flavor=None,
                       enable_deprecated=None, visibility=None,
-                      **kwargs):
+                      javacopts=[], **kwargs):
   """Generates and compiles gRPC Java sources for services defined in a proto
   file. This rule is compatible with java_proto_library and java_lite_proto_library.
 
@@ -127,5 +127,6 @@ def java_grpc_library(name, srcs, deps, flavor=None,
       deps = [
           "@com_google_code_findbugs_jsr305//jar",
       ] + deps + added_deps,
+      javacopts = javacopts,
       **kwargs
   )
