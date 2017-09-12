@@ -16,11 +16,13 @@
 
 package io.grpc;
 
-import com.google.common.base.Objects;
-import com.google.common.base.Preconditions;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
+
+import com.google.common.base.Objects;
+import com.google.common.base.Preconditions;
+
 import javax.annotation.Nullable;
 import javax.annotation.concurrent.Immutable;
 
@@ -85,6 +87,21 @@ public final class Attributes {
     @Override
     public String toString() {
       return name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) { return true; }
+      if (o == null || getClass() != o.getClass()) { return false; }
+
+      Key<?> key = (Key<?>) o;
+
+      return name.equals(key.name);
+    }
+
+    @Override
+    public int hashCode() {
+      return name.hashCode();
     }
 
     /**
